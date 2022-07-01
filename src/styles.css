@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+    background: rgb(158,249,216);
+    background: linear-gradient(45deg, rgba(158,249,216,1) 0%, rgba(202,246,191,1) 100%);
+    height: 100%;
+} 
+
+body{
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}

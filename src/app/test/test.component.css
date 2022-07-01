@@ -17,6 +17,7 @@ input[type=text] {
     margin: 8px 0;
     box-sizing: border-box;
     float: left;
+    font-family: 'Roboto';
 }
 input[type=button] {
     width: 20%;
@@ -24,6 +25,7 @@ input[type=button] {
     margin: 8px 0;
     box-sizing: border-box;
     float: left;
+    font-family: 'Roboto';
 }
 
 .elemento-container{
@@ -78,7 +80,7 @@ input[type=button] {
 
 .actionBar{
     padding: 12px 20px 12px 20px;
-    background-color:#a97aff;
+    background-color:#1aa37a;
     overflow: hidden;
 }
     .actionBar input[type=button]{

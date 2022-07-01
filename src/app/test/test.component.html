@@ -1,8 +1,9 @@
-<p class="title-text">ToDo list</p>
 <!-- ToDo INPUT -->
 <div class="input-container">
-    <input (input)="onChangeTodoTitle(inputField.value);" (keydown.enter)="todoAdd()" type="text" placeholder="Insert ToDo..." [value]="todoTitle"  #inputField>
-    <input (click)="todoAdd()" type="button" value="Add ToDo">
+    <div>
+        <input (input)="onChangeTodoTitle(inputField.value);" (keydown.enter)="todoAdd()" type="text" placeholder="Insert ToDo..." [value]="todoTitle"  #inputField>
+        <input (click)="todoAdd()" type="button" value="Add ToDo">
+    </div>
 </div>
 <!-- ToDo LIST -->
 <div class="elemento-container" *ngFor="let elem of loadedTodoArray; let i = index;">

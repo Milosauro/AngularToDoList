@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body, html {
-    font-family: 'Roboto';
-}
-
 .centrato{
     width: 600px;
+    padding: 40px;
     margin: 0 auto;
+    background-color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 15px -5px #000000; 
+    box-shadow: 0px 0px 15px -5px #000000;
 }
