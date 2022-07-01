@@ -1,16 +1,18 @@
 <!-- ToDo INPUT -->
 <div class="input-container">
     <div>
-        <input (input)="onChangeTodoTitle(inputField.value);" (keydown.enter)="todoAdd()" type="text" placeholder="Insert ToDo..." [value]="todoTitle"  #inputField>
-        <input (click)="todoAdd()" type="button" value="Add ToDo">
+        <input (input)="onChangeTodoTitle(inputField.value);" (keydown.enter)="todoAdd()" type="text" placeholder="Insert task..." [value]="todoTitle"  #inputField>
+        <button (click)="todoAdd()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-800 hover:border-green-600 rounded">Add Task</button>
     </div>
 </div>
 <!-- ToDo LIST -->
 <div class="elemento-container" *ngFor="let elem of loadedTodoArray; let i = index;">
     <div [ngClass]="elem.done == true ? 'elemento-done' : 'elemento'">
         <div class="testo"><span [ngClass]="elem.done == true ? 'done' : ''">{{elem.title}}</span></div>
-        <div class="toggle" (click)="toggleDone(elem)"><b>T</b></div>
-        <div class="elimina" (click)="todoDelete(i)"><b>X</b></div>
+        <button (click)="toggleDone(elem)">T</button>
+        <button (click)="todoDelete(i)">X</button>
+        <!-- <div class="toggle" (click)="toggleDone(elem)"><b>T</b></div> -->
+        <!-- <div class="elimina" (click)="todoDelete(i)"><b>X</b></div> -->
     </div>
 </div>
 <!-- ToDo ACTION BAR -->

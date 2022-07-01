@@ -10,10 +10,11 @@
 .input-container{
     overflow: hidden;
     float: none;
+    margin-bottom:20px;
 }
 input[type=text] {
     width: 80%;
-    padding: 12px 20px;
+    padding: 0px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     float: left;
@@ -29,29 +30,26 @@ input[type=button] {
 }
 
 .elemento-container{
-    width: 600px;
+    width: 100%;
     overflow: hidden;
 }
 
     .elemento{
-        height: 65px;
         overflow: hidden;
         margin: auto;
-        height: 20px;
-        background-color:aliceblue;
-        margin: 5px 0 10px;
+        background-color:#e2e9e7;
+        margin: 0 0 5px;
         padding: 12px;
-        overflow: hidden;
+        border-radius: 5px;
     }
 
     .elemento-done{
-        height: 65px;
         overflow: hidden;
         margin: auto;
-        height: 20px;
         background-color:#b1ffad;
-        margin: 5px 0 10px;
+        margin: 0 0 5px;
         padding: 12px;
+        border-radius: 5px;
     }
         .testo{
             width: 90%;
@@ -79,9 +77,10 @@ input[type=button] {
 }
 
 .actionBar{
-    padding: 12px 20px 12px 20px;
+    padding: 12px;
     background-color:#1aa37a;
     overflow: hidden;
+    margin-top:20px;
 }
     .actionBar input[type=button]{
         margin: 0 5px 0 5px;
