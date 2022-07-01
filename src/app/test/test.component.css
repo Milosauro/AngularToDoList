@@ -1,0 +1,85 @@
+.elemento{
+    width: 600px;
+    height: 65px;
+    overflow: hidden;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.input-container{
+    overflow: hidden;
+    float: none;
+}
+input[type=text] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    float: left;
+}
+input[type=button] {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    float: left;
+}
+
+.elemento-container{
+    width: 100%;
+}
+
+.elemento{
+    width: 95%;
+    margin: auto;
+    height: 20px;
+    background-color:aliceblue;
+    margin: 5px 0 10px;
+    padding: 12px;
+    overflow: hidden;
+}
+
+.elemento-done{
+    width: 95%;
+    margin: auto;
+    height: 20px;
+    background-color:#b1ffad;
+    margin: 5px 0 10px;
+    padding: 12px;
+    overflow: hidden;
+}
+    .testo{
+        width: 90%;
+        float: left;
+    }
+    .elimina{
+        width: 5%;
+        float: left;
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
+    .toggle{
+        width: 5%;
+        float: left;
+        color: green;
+        font-weight: bold;
+        text-align: center;
+    }
+
+.done{
+    text-decoration:line-through;
+    font-style: italic;
+    color: #555;
+}
+
+.actionBar{
+    padding: 12px 20px 12px 20px;
+    background-color:#a97aff;
+    overflow: hidden;
+}
+    .actionBar input[type=button]{
+        margin: 0 5px 0 5px;
+    }
