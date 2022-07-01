@@ -7,12 +7,24 @@
     font-size: 4em;
 }
 
+.grey-bar-header{
+    width: 100;
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+}
+
+.grey-bar-bottom{
+    width: 100;
+    border-bottom: 1px solid #999;
+    margin-top: 5px;
+}
+
 .input-container{
     overflow: hidden;
     float: none;
     margin-bottom:20px;
 }
-input[type=text] {
+.input-container input[type=text] {
     width: 80%;
     padding: 0px 20px;
     margin: 8px 0;
@@ -20,7 +32,7 @@ input[type=text] {
     float: left;
     font-family: 'Roboto';
 }
-input[type=button] {
+.input-container input[type=button] {
     width: 20%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -75,11 +87,25 @@ input[type=button] {
 }
 
 .actionBar{
-    padding: 12px;
-    background-color:#1aa37a;
     overflow: hidden;
-    margin-top:20px;
+    display: flex;
 }
-    .actionBar input[type=button]{
-        margin: 0 5px 0 5px;
+    .actionBar-box{
+        width:15%;
+        overflow:hidden;
+    }
+    .space-box{
+        width:60%;
+        overflow:hidden;
+    }
+
+    .actionBar input[type=button] {
+        width: 100%;
+        margin: 8px 0;
+        box-sizing: border-box;
+        float: left;
+        font-family: 'Roboto';
+        font-size: 0.85em;
+        font-style:italic;
+        color: #888;    
     }

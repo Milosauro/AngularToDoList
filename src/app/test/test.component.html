@@ -5,6 +5,7 @@
         <button (click)="todoAdd()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 border-b-4 border-green-800 hover:border-green-600 rounded">Add Task</button>
     </div>
 </div>
+
 <!-- ToDo LIST -->
 <div class="elemento-container" *ngFor="let elem of loadedTodoArray; let i = index;">
     <div [ngClass]="elem.done == true ? 'elemento-done' : 'elemento'">
@@ -21,7 +22,26 @@
         <!-- <div class="elimina" (click)="todoDelete(i)"><b>X</b></div> -->
     </div>
 </div>
+
+<div class="grey-bar-bottom"></div>
+
 <!-- ToDo ACTION BAR -->
 <div class="actionBar">
-    <input type="button" value="Clear All" (click)="todoDeleteAll()"> <input type="button" value="All" (click)="changeView('all')">  <input type="button" value="Done" (click)="changeView(true)">  <input type="button" value="Not done" (click)="changeView(false)">
+    <div class="actionBar-box">
+        <input type="button" value="Clear All" (click)="todoDeleteAll()">
+    </div>
+
+    <div class="space-box"></div>
+
+    <div class="actionBar-box"  [ngClass]="filter == 'all' ? 'hidden' : ''">
+        <input type="button" value="All" (click)="changeView('all')">
+    </div>
+
+    <div class="actionBar-box" [ngClass]="filter == true ? 'hidden' : ''">
+        <input type="button" value="Done" (click)="changeView(true)">
+    </div>
+
+    <div class="actionBar-box" [ngClass]="filter == false ? 'hidden' : ''">
+        <input type="button" value="Not done" (click)="changeView(false)" >
+    </div>
 </div>

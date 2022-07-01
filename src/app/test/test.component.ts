@@ -47,6 +47,7 @@ export class TestComponent implements OnInit {
   //Delete all ToDo
   todoDeleteAll(){
     this.allTodoList.splice(0);
+    this.changeView(this.filter);
   }
 
   //Set selected ToDo done or not done
