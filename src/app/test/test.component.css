@@ -39,7 +39,7 @@ input[type=button] {
         margin: auto;
         background-color:#e2e9e7;
         margin: 0 0 5px;
-        padding: 12px;
+        padding: 12px 0 12px 12px;
         border-radius: 5px;
     }
 
@@ -48,22 +48,20 @@ input[type=button] {
         margin: auto;
         background-color:#b1ffad;
         margin: 0 0 5px;
-        padding: 12px;
+        padding: 12px 0 12px 12px;
         border-radius: 5px;
     }
         .testo{
-            width: 90%;
+            width: 88%;
             float: left;
         }
         .elimina{
-            width: 5%;
             float: left;
             color: red;
             font-weight: bold;
             text-align: center;
         }
         .toggle{
-            width: 5%;
             float: left;
             color: green;
             font-weight: bold;
