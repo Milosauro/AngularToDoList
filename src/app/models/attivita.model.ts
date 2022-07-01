@@ -8,10 +8,10 @@ export class Attivita implements AttivitaInterface {
     public title: string;
     public done: boolean;
     
-    constructor(title: string){
-        this.id = this.uuidv4();
+    constructor(title: string, id?: string, done?: any){
+        this.id = (typeof id !== 'undefined' ? id : this.uuidv4());
         this.title = title;
-        this.done = false;
+        this.done = (typeof done !== 'undefined' ? done : false);
     }
 
     //
