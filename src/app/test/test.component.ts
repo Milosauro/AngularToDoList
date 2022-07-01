@@ -76,4 +76,12 @@ export class TestComponent implements OnInit {
     }
   }
 
+  getDoneTask(): number{
+    return this.allTodoList.filter(elem => elem.done == true).length;
+  }
+
+  getNotDoneTask(): number{
+    return this.allTodoList.filter(elem => elem.done == false).length;
+  }
+
 }
