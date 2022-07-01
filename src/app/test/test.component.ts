@@ -38,15 +38,25 @@ export class TestComponent implements OnInit {
   }
 
   //Delete selected ToDo
-  todoDelete(i:number): void{
-    console.log("elimino "+i);
+  // todoDelete(i:number): void{
+  //   console.log("elimino "+i);
+  //   // delete this.elemArray[i];
+  //   this.allTodoList.splice(i,1);
+  //   this.changeView(this.filter);
+  // }
+
+  //Delete selected ToDo
+  todoDelete(key: Attivita): void{
     // delete this.elemArray[i];
-    this.allTodoList.splice(i,1);
+    // this.allTodoList.splice(i,1);
+    this.allTodoList = this.allTodoList.filter(item => item !== key);
+    this.changeView(this.filter);
   }
 
   //Delete all ToDo
   todoDeleteAll(){
     this.allTodoList.splice(0);
+    this.changeView(this.filter);
   }
 
   //Set selected ToDo done or not done
