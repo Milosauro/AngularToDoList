@@ -1,11 +1,10 @@
-.elemento{
-    width: 600px;
-    height: 65px;
-    overflow: hidden;
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-.center-text{
+.title-text{
     text-align: center;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 4em;
 }
 
 .input-container{
@@ -28,46 +27,48 @@ input[type=button] {
 }
 
 .elemento-container{
-    width: 100%;
-}
-
-.elemento{
-    width: 95%;
-    margin: auto;
-    height: 20px;
-    background-color:aliceblue;
-    margin: 5px 0 10px;
-    padding: 12px;
+    width: 600px;
     overflow: hidden;
 }
 
-.elemento-done{
-    width: 95%;
-    margin: auto;
-    height: 20px;
-    background-color:#b1ffad;
-    margin: 5px 0 10px;
-    padding: 12px;
-    overflow: hidden;
-}
-    .testo{
-        width: 90%;
-        float: left;
+    .elemento{
+        height: 65px;
+        overflow: hidden;
+        margin: auto;
+        height: 20px;
+        background-color:aliceblue;
+        margin: 5px 0 10px;
+        padding: 12px;
+        overflow: hidden;
     }
-    .elimina{
-        width: 5%;
-        float: left;
-        color: red;
-        font-weight: bold;
-        text-align: center;
+
+    .elemento-done{
+        height: 65px;
+        overflow: hidden;
+        margin: auto;
+        height: 20px;
+        background-color:#b1ffad;
+        margin: 5px 0 10px;
+        padding: 12px;
     }
-    .toggle{
-        width: 5%;
-        float: left;
-        color: green;
-        font-weight: bold;
-        text-align: center;
-    }
+        .testo{
+            width: 90%;
+            float: left;
+        }
+        .elimina{
+            width: 5%;
+            float: left;
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+        .toggle{
+            width: 5%;
+            float: left;
+            color: green;
+            font-weight: bold;
+            text-align: center;
+        }
 
 .done{
     text-decoration:line-through;

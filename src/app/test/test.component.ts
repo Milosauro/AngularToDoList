@@ -8,55 +8,61 @@ import { Attivita } from '../models/attivita.model';
 })
 export class TestComponent implements OnInit {
 
-  prova: string;
-  elemArray: Attivita[];  
-  viewArray: Attivita[];
+  todoTitle: string;
+  allTodoList: Attivita[];  
+  loadedTodoArray: Attivita[];
   filter: any;
 
   constructor() { 
-    this.prova = "";
-    this.elemArray = [];
-    this.viewArray = [];
+    this.todoTitle = "";
+    this.allTodoList = [];
+    this.loadedTodoArray = [];
     this.filter = "all";
   }
 
   ngOnInit(): void {
   }
 
-  provaFunc(): void {
-    if(this.prova != "" && this.prova != " "){
-      this.elemArray.push(new Attivita(this.prova));
-      this.prova = "";
+  //Update new ToDo title on input/text change
+  onChangeTodoTitle(title: string): void {
+    this.todoTitle = title;
+  }
+
+  //Add new ToDo
+  todoAdd(): void {
+    if(this.todoTitle != "" && this.todoTitle != " "){
+      this.allTodoList.push(new Attivita(this.todoTitle));
+      this.todoTitle = "";
       this.changeView(this.filter);
     }
   }
 
-  cambiaFunc(varia: string): void {
-    this.prova = varia;
-  }
-
-  eliminaElem(i:number): void{
+  //Delete selected ToDo
+  todoDelete(i:number): void{
     console.log("elimino "+i);
     // delete this.elemArray[i];
-    this.elemArray.splice(i,1);
+    this.allTodoList.splice(i,1);
   }
 
+  //Delete all ToDo
+  todoDeleteAll(){
+    this.allTodoList.splice(0);
+  }
+
+  //Set selected ToDo done or not done
   toggleDone(todo: Attivita): void{
     todo.toggleAttivita();    
     this.changeView(this.filter);
   }
 
-  clearAll(){
-    this.elemArray.splice(0);
-  }
-
+  //Set listed ToDo
   changeView(condition: any){
     this.filter = condition;
     if(condition == "all"){
-      this.viewArray = this.elemArray;
+      this.loadedTodoArray = this.allTodoList;
     }
     else{
-      this.viewArray = this.elemArray.filter(item => item.done === condition);
+      this.loadedTodoArray = this.allTodoList.filter(item => item.done === condition);
     }
   }
 

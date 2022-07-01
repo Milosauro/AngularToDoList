@@ -1,15 +1,18 @@
-<h1 class="center-text">Test todo list @Milo</h1>
+<p class="title-text">ToDo list</p>
+<!-- ToDo INPUT -->
 <div class="input-container">
-    <input (input)="cambiaFunc(inputField.value);" (keydown.enter)="provaFunc()" type="text" placeholder="Inserisci un'attività..." [value]="prova"  #inputField>
-    <input (click)="provaFunc()" type="button" value="Add ToDo">
+    <input (input)="onChangeTodoTitle(inputField.value);" (keydown.enter)="todoAdd()" type="text" placeholder="Insert ToDo..." [value]="todoTitle"  #inputField>
+    <input (click)="todoAdd()" type="button" value="Add ToDo">
 </div>
-<div class="elemento-container" *ngFor="let elem of viewArray; let i = index;">
+<!-- ToDo LIST -->
+<div class="elemento-container" *ngFor="let elem of loadedTodoArray; let i = index;">
     <div [ngClass]="elem.done == true ? 'elemento-done' : 'elemento'">
         <div class="testo"><span [ngClass]="elem.done == true ? 'done' : ''">{{elem.title}}</span></div>
         <div class="toggle" (click)="toggleDone(elem)"><b>T</b></div>
-        <div class="elimina" (click)="eliminaElem(i)"><b>X</b></div>
+        <div class="elimina" (click)="todoDelete(i)"><b>X</b></div>
     </div>
 </div>
+<!-- ToDo ACTION BAR -->
 <div class="actionBar">
-    <input type="button" value="Clear All" (click)="clearAll()"> <input type="button" value="All" (click)="changeView('all')">  <input type="button" value="Done" (click)="changeView(true)">  <input type="button" value="Not done" (click)="changeView(false)">
+    <input type="button" value="Clear All" (click)="todoDeleteAll()"> <input type="button" value="All" (click)="changeView('all')">  <input type="button" value="Done" (click)="changeView(true)">  <input type="button" value="Not done" (click)="changeView(false)">
 </div>
