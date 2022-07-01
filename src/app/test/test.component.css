@@ -41,9 +41,13 @@
     font-family: 'Roboto';
 }
 
+.scroll-container{
+    max-height: 500px;
+    overflow: overflow-auto;
+}
+
 .elemento-container{
     width: 100%;
-    overflow: hidden;
 }
 
     .elemento{
@@ -109,3 +113,19 @@
         font-style:italic;
         color: #888;    
     }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .input-container input[type=text] {
+        width: 70%;
+    }
+    .testo{
+        width: 80%;
+    }
+    .actionBar-box{
+        width:20%;
+    }
+    .space-box{
+        width:40%;
+    }
+}
