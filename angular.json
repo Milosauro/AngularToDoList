@@ -100,7 +100,7 @@
           "builder": "@netlify-builder/deploy:deploy",
           "options": {
             "outputPath": "dist/test-app",
-            "netlifyToken": "",
+            "netlifyToken": "Dw7jIfHtGnCO2DAB8VzpztIgtqL55yvaBn7EX9mqi20",
             "siteId": "c020e827-75c0-4c84-97f1-2064273016ad"
           }
         }
