@@ -23,13 +23,14 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log("v 0.0.1");
+
     if(this.cookieService.get("save") == null){
-      this.cookieService.set("save","");
       console.log("Cookies empty");
     
       if(this.storageStore.getData("save") == null){
         console.log("Storage empty");
-        this.storageStore.saveData("save","");
       }
       else{
         this.storageReadSaveJSON();
@@ -73,7 +74,8 @@ export class TestComponent implements OnInit {
   //Delete all ToDo
   todoDeleteAll(){
     this.allTodoList.splice(0);
-    this.storageSaveJSON();
+    this.storageSaveJSON();    
+    this.cookieSaveJSON();
     this.changeView(this.filter);
   }
 
@@ -120,14 +122,18 @@ export class TestComponent implements OnInit {
 
   storageReadSaveJSON(): void{
     let storageSave = "" + this.storageStore.getData("save");
-    let jsonSave = JSON.parse(storageSave);
-    jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
+    if(storageSave != ""){
+      let jsonSave = JSON.parse(storageSave);
+      jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
+    }
   }
 
   cookieReadSaveJSON(): void{
     let cookieSave = "" + this.cookieService.get("save");
-    let jsonSave = JSON.parse(cookieSave);
-    jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
+    if(cookieSave != ""){
+      let jsonSave = JSON.parse(cookieSave);
+      jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
+    }
   }
 
 }
