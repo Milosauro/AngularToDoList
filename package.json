@@ -19,7 +19,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "netlify-plugin-cypress": "^2.2.0",
+    "netlify-plugin-cypress": "^1.2.0",
     "roboto-fontface": "^0.10.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.3",
     "@angular/compiler-cli": "^14.0.0",
+    "@netlify-builder/deploy": "^5.0.0",
     "@types/jasmine": "~4.0.0",
     "autoprefixer": "^10.4.7",
     "jasmine-core": "~4.1.0",
