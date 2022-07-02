@@ -1,6 +1,6 @@
 [build]
   command="ng build"
-  publish="dist/test-app"
+  publish="dist/AngularToDoList"
 
 [[redirects]]
   from = "/*"
