@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { empty, takeLast } from 'rxjs';
 import { Attivita } from '../models/attivita.model';
 import { StorageService } from '../storage.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-test',
@@ -15,7 +15,7 @@ export class TestComponent implements OnInit {
   loadedTodoArray: Attivita[];
   filter: any;
 
-  constructor(private storageStore: StorageService) { 
+  constructor(private storageStore: StorageService, private cookieService:CookieService) { 
     this.todoTitle = "";
     this.allTodoList = [];
     this.loadedTodoArray = [];
@@ -23,14 +23,22 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.storageStore.getData("save") == null){
-      console.log("Storage empty");
-      this.storageStore.clearData();
-      this.storageStore.saveData("save","");
+    if(this.cookieService.get("save") == null){
+      this.cookieService.set("save","");
+      console.log("Cookies empty");
+    
+      if(this.storageStore.getData("save") == null){
+        console.log("Storage empty");
+        this.storageStore.saveData("save","");
+      }
+      else{
+        this.storageReadSaveJSON();
+        console.log("Storage found");
+      }
     }
     else{
-      console.log("data found");
-      this.storageReadSaveJSON();
+      this.cookieReadSaveJSON();
+      console.log("Cookies found");
     }
     this.changeView(this.filter);
   }
@@ -47,6 +55,7 @@ export class TestComponent implements OnInit {
       this.allTodoList.push(task);
       this.todoTitle = "";
       this.storageSaveJSON();
+      this.cookieSaveJSON();
     }
     this.changeView(this.filter);
   }
@@ -57,6 +66,7 @@ export class TestComponent implements OnInit {
     // this.allTodoList.splice(i,1);
     this.allTodoList = this.allTodoList.filter(item => item !== key);
     this.storageSaveJSON();
+    this.cookieSaveJSON();
     this.changeView(this.filter);
   }
 
@@ -71,14 +81,13 @@ export class TestComponent implements OnInit {
   toggleDone(todo: Attivita): void{
     todo.toggleAttivita();    
     this.storageSaveJSON();
+    this.cookieSaveJSON();
     this.changeView(this.filter);
   }
 
   //Set listed ToDo
   changeView(condition: any){
     this.filter = condition;
-    console.log("change");
-    console.log(this.allTodoList);
     if(condition == "all"){
       this.loadedTodoArray = this.allTodoList;
     }
@@ -102,26 +111,23 @@ export class TestComponent implements OnInit {
     this.storageStore.saveData("save" , JSON.stringify(taskJSON));
   }
 
+  cookieSaveJSON(): void{
+    let taskJSON = [];
+    taskJSON = this.allTodoList.map( task => ({id: task.id, title: task.title, done: task.done }));
+    this.cookieService.delete("save");
+    this.cookieService.set("save" , JSON.stringify(taskJSON));
+  }
+
   storageReadSaveJSON(): void{
     let storageSave = "" + this.storageStore.getData("save");
     let jsonSave = JSON.parse(storageSave);
-    console.log("save");
-    console.log(jsonSave);
     jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
   }
 
-  // storageSaveJSON(task: Attivita): void{
-  //   const taskData = {  
-  //     title: task.title,  
-  //     done: task.done 
-  //   };
-  //   this.storageStore.saveData(task.id,JSON.stringify(taskData));
-  // }
-
-  // storageGetJSON(id: string): JSON{
-  //   const jsonString: string = "" + this.storageStore.getData(id);
-  //   let task: JSON = JSON.parse(jsonString);
-  //   return task;
-  // }
+  cookieReadSaveJSON(): void{
+    let cookieSave = "" + this.cookieService.get("save");
+    let jsonSave = JSON.parse(cookieSave);
+    jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
+  }
 
 }
