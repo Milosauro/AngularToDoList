@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Attivita } from '../models/attivita.model';
 import { StorageService } from '../storage.service';
 import {CookieService} from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-test',
@@ -15,7 +16,7 @@ export class TestComponent implements OnInit {
   loadedTodoArray: Attivita[];
   filter: any;
 
-  constructor(private storageStore: StorageService, private cookieService:CookieService) { 
+  constructor(private storageStore: StorageService, private cookieService:CookieService, private httpClient: HttpClient) { 
     this.todoTitle = "";
     this.allTodoList = [];
     this.loadedTodoArray = [];
@@ -134,6 +135,28 @@ export class TestComponent implements OnInit {
       let jsonSave = JSON.parse(cookieSave);
       jsonSave.map((task: Attivita) => this.allTodoList.push(new Attivita(task.title, task.id, task.done)));
     }
+  }
+
+  testAPI(): void{
+    let payload = {
+        "operation":"create",
+        "tableName":"MiloToDo",
+        "payload":{
+            "Item":{
+                "id":"asd7777",
+                "test":"prova 2",
+                "done":false
+            }
+        }
+    };
+
+    this.httpClient.post(
+      "https://bh53gs360j.execute-api.us-west-2.amazonaws.com/Dev/milotodo",
+      payload,
+      {
+        headers: new HttpHeaders().set("content-type","application/json")
+      }
+    ).subscribe();
   }
 
 }
