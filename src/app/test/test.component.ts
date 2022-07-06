@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { Attivita } from '../models/attivita.model';
 import { StorageService } from '../storage.service';
+import { ApicallService } from '../apicall.service';
 import {CookieService} from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -16,7 +17,7 @@ export class TestComponent implements OnInit {
   loadedTodoArray: Attivita[];
   filter: any;
 
-  constructor(private storageStore: StorageService, private cookieService:CookieService, private httpClient: HttpClient) { 
+  constructor(private storageStore: StorageService, private cookieService:CookieService, private httpClient: HttpClient, private AWSapi:ApicallService) { 
     this.todoTitle = "";
     this.allTodoList = [];
     this.loadedTodoArray = [];
@@ -58,6 +59,7 @@ export class TestComponent implements OnInit {
       this.todoTitle = "";
       this.storageSaveJSON();
       this.cookieSaveJSON();
+      this.AWSapi.createTask(task);
     }
     this.changeView(this.filter);
   }
@@ -69,6 +71,7 @@ export class TestComponent implements OnInit {
     this.allTodoList = this.allTodoList.filter(item => item !== key);
     this.storageSaveJSON();
     this.cookieSaveJSON();
+    this.AWSapi.deleteTask(key);
     this.changeView(this.filter);
   }
 
@@ -85,6 +88,7 @@ export class TestComponent implements OnInit {
     todo.toggleAttivita();    
     this.storageSaveJSON();
     this.cookieSaveJSON();
+    this.AWSapi.toggleTask(todo);
     this.changeView(this.filter);
   }
 
