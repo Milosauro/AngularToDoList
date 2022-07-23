@@ -54,6 +54,8 @@ export class ApicallService {
     this.httpcall(payload);
   }
 
+  //Laravell
+
   httpcall(payload: any): void{
     this.httpClient.post(
       "https://bh53gs360j.execute-api.us-west-2.amazonaws.com/Dev/milotodo",
