@@ -5,6 +5,7 @@ import { ApicallService } from '../apicall.service';
 import {CookieService} from 'ngx-cookie-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -16,33 +17,49 @@ export class TestComponent implements OnInit {
   allTodoList: Attivita[];  
   loadedTodoArray: Attivita[];
   filter: any;
+  tasks: Attivita[];
 
   constructor(private storageStore: StorageService, private cookieService:CookieService, private httpClient: HttpClient, private AWSapi:ApicallService) { 
     this.todoTitle = "";
     this.allTodoList = [];
     this.loadedTodoArray = [];
     this.filter = "all";
+    this.tasks = [];
   }
 
   ngOnInit(): void {
 
     console.log("v 0.0.1");
-
-    if(this.cookieService.get("save") == null){
-      console.log("Cookies empty");
+    this.fetchTasks();
+    // if(this.cookieService.get("save") == null){
+    //   console.log("Cookies empty");
     
-      if(this.storageStore.getData("save") == null){
-        console.log("Storage empty");
+    //   if(this.storageStore.getData("save") == null){
+    //     console.log("Storage empty");
+    //   }
+    //   else{
+    //     this.storageReadSaveJSON();
+    //     console.log("Storage found");
+    //   }
+    // }
+    // else{
+    //   this.cookieReadSaveJSON();
+    //   console.log("Cookies found");
+    // }
+  }
+
+  fetchTasks() : void {
+    this.AWSapi.apiGetAllPost().subscribe(
+      (response: any) =>{
+        this.tasks = response['tasks'];
+        this.update();
       }
-      else{
-        this.storageReadSaveJSON();
-        console.log("Storage found");
-      }
-    }
-    else{
-      this.cookieReadSaveJSON();
-      console.log("Cookies found");
-    }
+    );
+  };
+
+  update(){ 
+    this.allTodoList = [];
+    this.tasks.forEach(task => this.allTodoList.push(task)); 
     this.changeView(this.filter);
   }
 
@@ -55,41 +72,37 @@ export class TestComponent implements OnInit {
   todoAdd(): void {
     if(this.todoTitle != "" && this.todoTitle != " "){
       const task = new Attivita(this.todoTitle);
-      this.allTodoList.push(task);
-      this.todoTitle = "";
-      this.storageSaveJSON();
-      this.cookieSaveJSON();
-      this.AWSapi.createTask(task);
+      this.AWSapi.apiPost(task).subscribe(
+        () =>{
+          this.fetchTasks();
+        });
     }
-    this.changeView(this.filter);
+    this.todoTitle = '';
+    this.fetchTasks();
   }
 
   //Delete selected ToDo
-  todoDelete(key: Attivita): void{
-    // delete this.elemArray[i];
-    // this.allTodoList.splice(i,1);
-    this.allTodoList = this.allTodoList.filter(item => item !== key);
-    this.storageSaveJSON();
-    this.cookieSaveJSON();
-    this.AWSapi.deleteTask(key);
-    this.changeView(this.filter);
+  todoDelete(task: Attivita): void{
+    this.AWSapi.apiDelete(task).subscribe(
+      () =>{
+        this.fetchTasks();
+      });
   }
 
   //Delete all ToDo
   todoDeleteAll(){
-    this.allTodoList.splice(0);
-    this.storageSaveJSON();    
-    this.cookieSaveJSON();
-    this.changeView(this.filter);
+    this.AWSapi.apiDeleteAll().subscribe(
+      () =>{
+        this.fetchTasks();
+      });
   }
 
   //Set selected ToDo done or not done
-  toggleDone(todo: Attivita): void{
-    todo.toggleAttivita();    
-    this.storageSaveJSON();
-    this.cookieSaveJSON();
-    this.AWSapi.toggleTask(todo);
-    this.changeView(this.filter);
+  toggleDone(task: Attivita): void{
+    this.AWSapi.apiPut(task).subscribe(
+      () =>{
+        this.fetchTasks();
+      });
   }
 
   //Set listed ToDo
@@ -99,7 +112,7 @@ export class TestComponent implements OnInit {
       this.loadedTodoArray = this.allTodoList;
     }
     else{
-      this.loadedTodoArray = this.allTodoList.filter(item => item.done === condition);
+      this.loadedTodoArray = this.allTodoList.filter(item => item.done == condition);
     }
   }
 
